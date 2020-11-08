@@ -1,0 +1,10 @@
+.vscode
+.DS_Store
+
+.idea
+.gradle
+
+node_modules
+
+dist
+build
