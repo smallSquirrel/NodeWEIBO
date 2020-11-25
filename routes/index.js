@@ -1,12 +1,13 @@
 const router = require('koa-router')()
 
 router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
+  await ctx.render('welcome', {
     title: 'Hello Koa 2!'
   })
 })
 
 router.get('/string', async (ctx, next) => {
+  throw Error()
   ctx.body = 'koa2 string'
 })
 

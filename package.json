@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node bin/www",
-    "dev": "./node_modules/.bin/nodemon bin/www",
+    "dev": "./node_modules/.bin/nodemon --inspect=9229 bin/www",
     "prd": "pm2 start bin/www",
-    "lint": "eslint --ext .js ./src",
+    "lint": "eslint --ext .js",
+    "fix": "eslint --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

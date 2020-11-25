@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/welcome.css' />
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.3/jquery.fullpage.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.3/jquery.fullpage.js"></script>
+    <style>
+    </style>
+  </head>
+  <body>
+    <div id='fullpage'>
+      <div class="section one">
+        <div class="header-nav">
+          <div><img src="/images/logo.png" alt="logo"></div>
+        </div>
+
+        <div class="header-content">
+          <div class="content-wrap">
+            <h3 class="font-title padding-bottom-20">OSF</h3>
+            <h4 class="font-content padding-bottom-10">Open Share Freedom</h4>
+            <h6 class="font-content padding-bottom-10">开放 分享 自由</h6>
+          </div>
+          <div class="content-wrap login-register">
+            <div class="padding-bottom-20">
+              <h3 class="font-content">欢迎登录</h3>
+            </div>
+            <div class="padding-bottom-20">
+              <input type="text" placeholder="用户名">
+            </div>
+            <div class="padding-bottom-20">
+              <input type="password" placeholder="密码">
+            </div>
+            <div class="padding-bottom-20">
+              <button class="login-btn">登录</button>
+              <button class="register-btn">注册</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="content-wrap">
+          <div class="padding-bottom-20 padding-top-20">
+            <h3 class="font-content" style="color: #000000;font-size: 58px;">OSF是什么</h3>
+          </div>
+          <div class="padding-bottom-20">
+            <p class="p-content">你可以用它打造一个SNS网站</p>
+            <p class="p-content">也可以从Tag出发构建一个垂直兴趣社区</p>
+            <p class="p-content">甚至是两者的混合，但绝不仅如此</p>
+          </div>
+          <div class="padding-bottom-20">
+            <div class="img-list">
+              <ul>
+                <li style="width: 15%;"><img src="/images/welcome/content1.png" alt=""></li>
+                <li style="width: 15%;"><img src="/images/welcome/content5.png" alt=""></li>
+                <li style="width: 15%;"><img src="/images/welcome/content2.png" alt=""></li>
+                <li style="width: 25%;"><img src="/images/welcome/content6.png" alt=""></li>
+                <li style="width: 25%;"><img src="/images/welcome/content7.png" alt=""></li>
+              </ul>
+            </div>
+            <div class="img-list">
+              <ul>
+                <li style="width: 22%;"><img src="/images/welcome/content4.png" alt=""></li>
+                <li style="width: 10%;"><img src="/images/welcome/content9.png" alt=""></li>
+                <li style="width: 50%;"><img src="/images/welcome/content8.png" alt=""></li>
+                <li style="width: 18%;"><img src="/images/welcome/content3.png" alt=""></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="three-page" style="display: flex;">
+          <div class="three-header "><h4>在 O S F 你可以</h4></div>
+          <div class="three-body">
+            <ul>
+              <li>
+                <span class="span-a"><i class="fa fa-comments" style="color: #0029c7;"></i></span>
+                <span>说说</span>
+                <span>发送简短的消息，分享你此时的状态</span>
+              </li>
+              <li>
+                <span class="span-a"><i class="fa fa-picture-o" style="color: #9fe0f6;"></i></span>
+                <span>相册</span>
+                <span>上传图片，记录美好时刻</span>
+              </li>
+              <li>
+                <span class="span-a"><i class="fa fa-book" style="color: #f3e59a;"></i></span>
+                <span>日志</span>
+                <span>用文字表达</span>
+              </li>
+              <li>
+                <span class="span-a"><i class="fa fa-tags" style="color: #f3b59b;"></i></span>
+                <span>标签</span>
+                <span>兴趣，从标签出发</span>
+              </li>
+              <li>
+                <span class="span-a"><i class="fa fa-address-book" style="color: #f29c9c;"></i></span>
+                <span>朋友</span>
+                <span>关注的朋友不错过TA的动态</span>
+              </li>
+              <li>
+                <span class="span-a"><i class="fa fa-heart" style="color: #f2572d;"></i></span>
+                <span>喜欢</span>
+                <span>相册、日志喜欢就收藏起来吧</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="section four">
+        <div class="content-wrap login-register">
+          <div class="padding-bottom-20">
+            <h3 class="font-content">探索,OSF</h3>
+          </div>
+          <div class="padding-bottom-20">
+            <button class="login-btn">登录</button>
+            <button class="register-btn">注册</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(function() {
+        $('#fullpage').fullpage();
+      });
+    </script>
+  </body>
+</html>
