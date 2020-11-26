@@ -2,13 +2,14 @@ const router = require('koa-router')()
 
 router.get('/', async (ctx, next) => {
   await ctx.render('welcome', {
-    title: 'Hello Koa 2!'
+    title: 'OSF - 一个自由开放的SNS社区'
   })
 })
 
-router.get('/string', async (ctx, next) => {
-  throw Error()
-  ctx.body = 'koa2 string'
+router.get('/home', async (ctx, next) => {
+  await ctx.render('index', {
+    title: '首页 - OSF - 一个自由开放的SNS社区'
+  })
 })
 
 router.get('/json', async (ctx, next) => {

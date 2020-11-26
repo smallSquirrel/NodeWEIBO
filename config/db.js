@@ -11,6 +11,11 @@ let MYSQL_CONFIG = {
   database: 'koa-weibo'
 }
 
+let REDIS_CONF = {
+  port: 6379,
+  host: '127.0.0.1'
+}
+
 // 线上环境 在此判断
 if (isProd) {
   // 线上MySQL配置
@@ -21,9 +26,16 @@ if (isProd) {
     password: 'root',
     database: 'koa-weibo'
   }
+
+  // 线上Redis配置
+  REDIS_CONF = {
+    port: 6379,
+    host: '127.0.0.1'
+  }
 }
 
 
 module.exports = {
-  MYSQL_CONFIG
+  REDIS_CONF,
+  MYSQL_CONFIG,
 }
