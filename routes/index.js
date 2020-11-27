@@ -13,14 +13,14 @@ router.get('/home', async (ctx, next) => {
 })
 
 router.get('/json', async (ctx, next) => {
-  const session = ctx.session
-  if (session.viewCount === null) {
-    session.viewCount = 0
-  }
-  session.viewCount ++
+  // const session = ctx.session
+  // if (session.viewCount === null) {
+  //   session.viewCount = 0
+  // }
+  // session.viewCount ++
   ctx.body = {
     title: 'koa2 json',
-    count: session.viewCount,
+    // count: session.viewCount,
   }
 })
 
