@@ -8,6 +8,7 @@ router.get('/error', async (ctx, next) => {
   await ctx.render('error', {
     title: 'OSF - 错误页面',
     message: '错误页面',
+    isNav: false,
   })
 })
 
@@ -16,6 +17,7 @@ router.get('*', async (ctx, next) => {
   await ctx.render('404', {
     title: 'OSF - 404错误页面',
     message: 'Not Found',
+    isNav: false
   })
 })
 

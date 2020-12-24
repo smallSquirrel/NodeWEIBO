@@ -1,2 +1,21 @@
+  <script type="text/javascript">
+    function setWidthHeight () {
+      let width = $(window).width()
+      let height = $(window).height()
+  
+      $('body').width(`${width}px`)
+      $('body').height(`${height}px`)
+    }
+  
+    $(window).resize(function() {
+      setWidthHeight()
+    })
+
+    $(function () {
+      setWidthHeight();
+    })
+  
+  </script>
+
 </body>
 </html>

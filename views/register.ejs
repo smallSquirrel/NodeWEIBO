@@ -1,0 +1,63 @@
+<%- include('./header') %>
+
+<div class="bg1 wrap-login-register">
+  <div class="container">
+    <!-- title -->
+    <div style="padding-left: 15px;margin-bottom: 20px; color: #ffffff; font-size: xx-large;">
+      <h1><span class="badge badge-secondary">加入OSF社区，成为社区一员吧。</span></h1>
+    </div>
+    <!-- form 表单 -->
+    <form>
+      <div class="form-group col-md-5">
+        <label for="inputEmail" class="title-lable"><i class="fa fa-envelope"></i> 注册邮箱</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="请输入邮箱" />
+      </div>
+      <div class="form-group col-md-5">
+        <label for="inputPassword" class="title-lable"><i class="fa fa-key"></i> 输入密码</label>
+        <input type="password" class="form-control" id="inputPassword" placeholder="请输入密码" />
+      </div>
+      <div class="form-group col-md-5">
+        <label for="inputPasswordRepeat" class="title-lable"><i class="fa fa-key"></i> 验证密码</label>
+        <input type="password" class="form-control" id="inputPasswordRepeat" placeholder="请重新输入密码" />
+      </div>
+      <div class="form-group col-md-5">
+        <label for="inputSex">性别</label>
+        <select id="inputSex" class="form-control">
+          <option selected>男</option>
+          <option>女</option>
+        </select>
+      </div>
+      <div class="form-group col-md-5">
+        <button style="margin-bottom: 15px; " id="register-form" type="button" class="btn btn-info btn-block"><i class="fa fa-sign-in" aria-hidden="true"></i> 注册</button>
+        <a style="color: #ffffff;" href="/users/login"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> 已有账号，去登录 </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var ajax = $.ajax
+  $(function () {
+    // 注册
+    $('#register-form').click(function () {
+      var email = $('#inputEmail').val();
+      var password = $('#inputPassword').val();
+      var passwordRepeat = $('#inputPasswordRepeat').val();
+      var sex = $('#inputSex').val();
+
+      // 此处需要做验证
+      console.log(email,password, passwordRepeat, sex)
+
+      axios.post('/api/users/isExist', {
+        userName: email,
+      })
+      .then(function (response) {
+        console.log('response = ', response);
+      })
+      .catch(function (error) {
+        console.log('error = ', error);
+      });
+    })
+  })
+</script>
+

@@ -60,12 +60,11 @@
   padding: 0 15px;
   width: 300px;
 }
-.login-register button {
+button.login-btn, button.register-btn {
   outline: none;
   border: none;
-  border-radius: 4px;
-  height: 45px;
-  width: 165px;
+  border-radius: 7px;
+  padding: 15px 30px;
 }
 
 .login-register {

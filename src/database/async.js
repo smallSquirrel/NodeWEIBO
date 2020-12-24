@@ -3,6 +3,9 @@
  */
 const seq = require('./seq')
 
+// 同步模型
+require('./model/index')
+
 // 测试连接
 seq.authenticate().then(() => {
   console.log('Mysql 连接 .... OK')

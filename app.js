@@ -10,8 +10,10 @@ const redisStore = require('koa-redis')
 const { isProd } = require('./config/env')
 const { REDIS_CONF } = require('./config/db')
 
+// 路由
 const index = require('./routes/index')
-const users = require('./routes/users')
+const users = require('./routes/view/users')
+const usersApi = require('./routes/api/user')
 const errorViewRouter = require('./routes/view/error')
 
 // error handler
@@ -25,9 +27,7 @@ if (true) {
 onerror(app, onerrorConf)
 
 // middlewares
-app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
-}))
+app.use(bodyparser())
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
@@ -59,10 +59,10 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
-// routes
+// routes 注册
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
-
+app.use(usersApi.routes(), usersApi.allowedMethods())
 // error 和 404
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods())
 

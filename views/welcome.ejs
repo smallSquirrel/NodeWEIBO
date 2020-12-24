@@ -33,6 +33,10 @@
       <div class="section one">
         <div class="header-nav">
           <div><img src="/images/logo.png" alt="logo"></div>
+          <div class="padding-top-20">
+            <button class="login-btn" >登录</button>
+            <button class="register-btn">注册</button>
+          </div>
         </div>
 
         <div class="header-content">
@@ -41,7 +45,7 @@
             <h4 class="font-content padding-bottom-10">Open Share Freedom</h4>
             <h6 class="font-content padding-bottom-10">开放 分享 自由</h6>
           </div>
-          <div class="content-wrap login-register">
+          <!-- <div class="content-wrap login-register">
             <div class="padding-bottom-20">
               <h3 class="font-content">欢迎登录</h3>
             </div>
@@ -55,7 +59,7 @@
               <button class="login-btn" >登录</button>
               <button class="register-btn">注册</button>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="section">
@@ -145,8 +149,11 @@
       $(function() {
         $('#fullpage').fullpage();
 
-        $('.login-btn, .register-btn').click(function () {
-          window.location.href = '/home'
+        $('.login-btn').click(function () {
+          window.location.href = '/users/login'
+        })
+        $('.register-btn').click(function () {
+          window.location.href = '/users/register'
         })
       });
     </script>
