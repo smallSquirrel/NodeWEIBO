@@ -17,5 +17,9 @@ module.exports = {
   loginFail: {
     status: 10004,
     message: '登录失败，用户名或密码错误'
-  }
+  },
+  jsonSchemaErrorInfo: {
+    status: 10005,
+    message: '数据格式校验错误，请输入正确格式'
+  },
 }
