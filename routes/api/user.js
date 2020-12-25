@@ -7,7 +7,8 @@ router.prefix('/api/users')
 
 // 注册
 router.post('/register', async (ctx, next) => {
-  ctx.body = ctx.request.body
+  const { userName, password, gender } = ctx.request.body
+  ctx.body = await register({ userName, password, gender })
 })
 
 // 用户是否存在

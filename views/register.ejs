@@ -23,8 +23,9 @@
       <div class="form-group col-md-5">
         <label for="inputSex">性别</label>
         <select id="inputSex" class="form-control">
-          <option selected>男</option>
-          <option>女</option>
+          <option value="1">男</option>
+          <option value="2">女</option>
+          <option selected value="3">保密</option>
         </select>
       </div>
       <div class="form-group col-md-5">
@@ -48,8 +49,20 @@
       // 此处需要做验证
       console.log(email,password, passwordRepeat, sex)
 
-      axios.post('/api/users/isExist', {
+      // axios.post('/api/users/isExist', {
+      //   userName: email,
+      // })
+      // .then(function (response) {
+      //   console.log('response = ', response);
+      // })
+      // .catch(function (error) {
+      //   console.log('error = ', error);
+      // });
+
+      axios.post('/api/users/register', {
         userName: email,
+        password,
+        gender: sex,
       })
       .then(function (response) {
         console.log('response = ', response);
