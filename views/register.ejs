@@ -62,9 +62,15 @@
       axios.post('/api/users/register', {
         userName: email,
         password,
-        gender: sex,
+        gender: parseInt(sex),
       })
       .then(function (response) {
+        const { data } = response
+        if (data.status !== 0) {
+          alert(data.message)
+          return
+        }
+        location.href = '/'
         console.log('response = ', response);
       })
       .catch(function (error) {

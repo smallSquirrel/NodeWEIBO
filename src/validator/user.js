@@ -7,10 +7,11 @@ const validate = require('./validator')
 
 const userSchema = {
   type: 'object',
+  required: ['userName', 'password'],
   properties: {
     userName: {
       type: 'string',
-      pattern: '/^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/',
+      // pattern: '/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/',
       maxLength: 255,
       minLength: 2,
     },

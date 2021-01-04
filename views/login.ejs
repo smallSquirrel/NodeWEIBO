@@ -10,21 +10,47 @@
     <form>
 
       <div class="form-group col-md-4">
-        <label for="inputEmail4" class="title-lable"><i class="fa fa-envelope"></i> 邮箱</label>
+        <label for="inputEmail" class="title-lable"><i class="fa fa-envelope"></i> 邮箱</label>
         <input type="email" class="form-control" id="inputEmail" placeholder="请输入邮箱">
       </div>
 
       <div class="form-group col-md-4">
-        <label for="inputPassword4" class="title-lable"><i class="fa fa-key"></i> 密码</label>
+        <label for="inputPassword" class="title-lable"><i class="fa fa-key"></i> 密码</label>
         <input type="password" class="form-control" id="inputPassword" placeholder="请输入密码">
       </div>
 
       <div class="form-group col-md-4">
-        <button style="margin-bottom: 15px; " type="button" class="btn btn-success btn-block"><i class="fa fa-sign-in" aria-hidden="true"></i> 登录</button>
+        <button style="margin-bottom: 15px; " id="login-btn" type="button" class="btn btn-success btn-block"><i class="fa fa-sign-in" aria-hidden="true"></i> 登录</button>
         <a style="color: #ffffff;" href="/users/register"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> 暂无账号，去注册 </button>
       </div>
     </form>  
   </div>
 </div>
+
+<script type="text/javascript">
+  $(function () {
+    // 登录
+    $('#login-btn').click(function () {
+      var email = $('#inputEmail').val();
+      var password = $('#inputPassword').val();
+      axios.post('/api/users/login', {
+        userName: email,
+        password,
+      })
+      .then(function (response) {
+        const { data } = response
+        if(data.status === 0) {
+          location.href = '/home'
+          return
+        }
+        alert(data.message)
+        console.log('response = ', response);
+      })
+      .catch(function (error) {
+        console.log('error = ', error);
+      });
+    })
+  })
+</script>
 
 

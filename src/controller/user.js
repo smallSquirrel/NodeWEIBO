@@ -48,7 +48,27 @@ async function isExist(userName) {
   }
 }
 
+/**
+ * 登录接口
+ * @param {Obejtc} ctx koa2 ctx
+ * @param {string} userName 用户名
+ * @param {string} password 密码
+ */
+async function login(ctx, userName, password) {
+  const userInfo = await getUserInfo(userName, doCrypto(password))
+  if (!userInfo) {
+    // 登录失败
+    return new ErrorModel(loginFail)
+  }
+  // 登陆成功将用户信息写入session中
+  if (ctx.session.userInfo === undefined) {
+    ctx.session.userInfo = userInfo
+  }
+  return new SuccessModel()
+}
+
 module.exports = {
   register,
   isExist,
+  login
 }

@@ -13,7 +13,7 @@ const ajv = new Ajv({
  */
 function validate(schema, data = {}) {
   const validate = ajv.compile(schema)
-  const valid =validate(data)
+  const valid = validate(data)
   if(!valid) {
     return validate.errors[0]
   }
