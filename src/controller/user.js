@@ -77,7 +77,7 @@ async function login(ctx, userName, password) {
  * 删除用户
  * @param {string} userName 用户名
  */
-async function deleteUser(userName) {
+async function deleteUserInfo(userName) {
   let result = await deleteUser(userName)
   if (result) {
     return new SuccessModel()
@@ -89,5 +89,5 @@ module.exports = {
   register,
   isExist,
   login,
-  deleteUser
+  deleteUserInfo
 }
