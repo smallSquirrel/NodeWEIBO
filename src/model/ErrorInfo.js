@@ -22,4 +22,16 @@ module.exports = {
     status: 10005,
     message: '数据格式校验错误，请输入正确格式'
   },
+  loginCheckFail: {
+    status: 10006,
+    message: '您尚未登录'
+  },
+  changePasswordFailInfo: {
+    status: 10007,
+    message: '修改密码失败，请重试'
+  },
+  deleteUserFailInfo: {
+    status: 10008,
+    message: '删除用户失败'
+  },
 }
