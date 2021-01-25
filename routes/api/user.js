@@ -3,10 +3,10 @@
  */
 const router = require('koa-router')()
 const { isTest } = require('../../config/env')
-const { register, isExist, login, deleteUserInfo } = require('../../src/controller/user')
+const { register, isExist, login, deleteUserInfo, changeUserInfo } = require('../../src/controller/user')
 const { genAsyncFunction } = require('../../src/middlewares/validator')
 const userValidate = require('../../src/validator/user')
-const { loginCheck } = require('../../src/middlewares/loginCheck')
+const { loginCheck, loginRedirect } = require('../../src/middlewares/loginCheck')
 
 router.prefix('/api/users')
 
@@ -28,12 +28,24 @@ router.post('/login', async (ctx) => {
   ctx.body = await login(ctx, userName, password)
 })
 
+// 删除用户
 router.post('/delete', loginCheck ,async (ctx) => {
   if (isTest) {
     // 测试环境下 删除自己
     const { userName } = ctx.session.userInfo
     ctx.body = await deleteUserInfo(userName)
   }
+})
+
+// 修改用户信息
+router.post('/changeInfo', loginRedirect, async (ctx) => {
+  const { nickName, city, avatar } = ctx.request.body
+  ctx.body = await changeUserInfo(nickName, city, avatar)
+})
+
+// 修改密码
+router.post('/changePassword', loginRedirect, async (ctx) => {
+
 })
 
 module.exports = router

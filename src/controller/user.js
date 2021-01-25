@@ -1,7 +1,7 @@
 /**
  * @description user controller
  */
-const { getUserInfo, createUser, deleteUser } = require('../service/user')
+const { getUserInfo, createUser, deleteUser, updateUser } = require('../service/user')
 const { doCrypto } = require('../utils/cryp')
 const { SuccessModel, ErrorModel } = require('../model/ResModel')
 const {
@@ -85,9 +85,20 @@ async function deleteUserInfo(userName) {
   return new ErrorModel(deleteUserFailInfo)
 }
 
+/**
+ * 修改用户信息
+ * @param {string} nickName 昵称
+ * @param {string} city 城市
+ * @param {string} avatar 头像
+ */
+async function changeUserInfo(ctx, nickName, city, avatar) {
+  let userInfo = ctx.session.userInfo
+}
+
 module.exports = {
   register,
   isExist,
   login,
-  deleteUserInfo
+  deleteUserInfo,
+  changeUserInfo
 }

@@ -1,6 +1,50 @@
 <%- include('./header.ejs') %>
 
-    <h1><%= title %></h1>
-    <p>EJS Welcome to <%= title %></p>
+    <div id="body-wrap">
+        <div class="body-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8">
+                        <!-- left content -->
+                        <div class="content-wrap">
+                            <h1><%= title %></h1>
+                            <p>EJS Welcome to <%= title %></p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <!-- right content -->
+                        <div class="content-wrap">
+                            <div class="user-info-top">
+                                <div class="avatar-info">
+                                    <img src="/images/home/body_bg.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="user-info-botton">
+                                <div class="user-intro">
+                                    <p>梦里花落知多少</p>
+                                    <p>不会炒股的不是好码农</p>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <span class="botton-span-title">粉丝</span>
+                                        <span class="botton-span-content">232342</span>
+                                    </li>
+                                    <li>
+                                        <span class="botton-span-title">关注</span>
+                                        <span class="botton-span-content">1223</span>
+                                    </li>
+                                    <li>
+                                        <span class="botton-span-title">动态</span>
+                                        <span class="botton-span-content">1890</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 <%- include('./footer.ejs') %>

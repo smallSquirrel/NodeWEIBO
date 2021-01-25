@@ -58,8 +58,19 @@ async function deleteUser(userName) {
   return result > 0
 }
 
+async function updateUser(userName, nickName, city, avatar) {
+  let user = await getUserInfo(userName)
+  if (user) {
+    user.nickName = nickName
+    user.city = city
+    user.avatar = avatar
+    await user.save()
+  }
+}
+
 module.exports = {
   getUserInfo,
   createUser,
   deleteUser,
+  updateUser,
 }

@@ -14,6 +14,7 @@ const { REDIS_CONF } = require('./config/db')
 const index = require('./routes/index')
 const users = require('./routes/view/users')
 const usersApi = require('./routes/api/user')
+const utilsApi = require('./routes/api/utils')
 const errorViewRouter = require('./routes/view/error')
 
 // error handler
@@ -63,6 +64,7 @@ app.use(async (ctx, next) => {
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 app.use(usersApi.routes(), usersApi.allowedMethods())
+app.use(utilsApi.routes(), utilsApi.allowedMethods())
 // error 和 404
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods())
 
