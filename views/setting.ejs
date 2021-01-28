@@ -1,8 +1,116 @@
-<div>
-  <p>setting page.....</p>
-  <p>setting page.....</p>
-  <p>setting page.....</p>
-  <p>setting page.....</p>
-  <p>setting page.....</p>
-  <p>你的名字是 <%= userName %></p>
-</div>
+<%- include('./header.ejs') %>
+
+  <div class="body">
+    <div class="body-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="set-content">
+              <div>
+                <i class="fa fa-list-ul" aria-hidden="true"></i>
+                <span class="set-content-title">修改信息</span>
+              </div>
+              <div style="margin-top: 20px;">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="nickName" class="col-sm-2 control-label">头像</label>
+                    <div class="col-sm-10">
+                      <img src="<%= avatar %> " alt="用户头像" class="img-thumbnail">
+                      <input type="file" accept="image/*" class="form-control" id="image-file" placeholder="头像" value="上传头像">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="nickName" class="col-sm-2 control-label">昵称</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="nickName" placeholder="昵称" value="<%= nickName %> ">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="city" class="col-sm-2 control-label">城市</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="city" placeholder="城市" value="<%= city %> ">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="gender" class="col-sm-2 control-label">性别</label>
+                    <div class="col-sm-10">
+                      <select id="gender" class="form-control" >
+                        <option value="1" selected="<%= gender == '1' %> ">男</option>
+                        <option value="2" selected="<%= gender == '2' %> ">女</option>
+                        <option value="3" selected="<%= gender == '3' %> ">保密</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" id="updateInfo" class="btn btn-default">保存修改</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="set-content">
+              <div>
+                <i class="fa fa-list-ul" aria-hidden="true"></i>
+                <span class="set-content-title">修改密码</span>
+              </div>
+              <div style="margin-top: 20px;">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="nickName" class="col-sm-2 control-label">原始密码</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="oldPassword" placeholder="原始密码">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="city" class="col-sm-2 control-label">新密码</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="newPassword" placeholder="新密码">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" id="updatePassword" class="btn btn-default">修改密码</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(function() {
+      let nickName = $('#nickName').val()
+      let city = $('#city').val()
+      let gender = $('#city').val()
+
+      // updateInfo
+      $('#updateInfo').click(function() {
+        axios.post('/api/users/changeInfo', {
+          nickName,
+          city,
+          gender,
+        })
+        .then(function (response) {
+          const { data } = response
+          // if(data.status === 0) {
+          //   location.href = '/home'
+          //   return
+          // }
+          alert(data.message)
+          console.log('response = ', response);
+        })
+        .catch(function (error) {
+          console.log('error = ', error);
+        });
+      })
+      
+    })
+  </script>
+
+<%- include('./footer.ejs') %>

@@ -9,7 +9,8 @@ const {
   userInfoExist,
   registerFail,
   loginFail,
-  deleteUserFailInfo
+  deleteUserFailInfo,
+  changeInfoFail
 } = require('../model/ErrorInfo.js')
 
 /**
@@ -90,9 +91,14 @@ async function deleteUserInfo(userName) {
  * @param {string} nickName 昵称
  * @param {string} city 城市
  * @param {string} avatar 头像
+ * @param {number} gender 性别
  */
-async function changeUserInfo(ctx, nickName, city, avatar) {
-  let userInfo = ctx.session.userInfo
+async function changeUserInfo(userName, nickName, city, avatar, gender) {
+  let result = await updateUser(userName, nickName, city, avatar, gender)
+  if (result) {
+    return new SuccessModel()
+  }
+  return new ErrorModel(changeInfoFail)
 }
 
 module.exports = {

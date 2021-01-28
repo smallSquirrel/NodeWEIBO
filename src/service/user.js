@@ -58,14 +58,25 @@ async function deleteUser(userName) {
   return result > 0
 }
 
-async function updateUser(userName, nickName, city, avatar) {
+/**
+ * 修改用户信息
+ * @param {string} userName 唯一用户名
+ * @param {string} nickName 用户昵称
+ * @param {string} city 城市
+ * @param {string} avatar 头像
+ * @param {number} gender 性别
+ */
+async function updateUser(userName, nickName, city, avatar, gender) {
   let user = await getUserInfo(userName)
   if (user) {
     user.nickName = nickName
     user.city = city
     user.avatar = avatar
+    user.gender = gender
     await user.save()
+    return true
   }
+  return false
 }
 
 module.exports = {

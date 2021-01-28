@@ -38,9 +38,10 @@ router.post('/delete', loginCheck ,async (ctx) => {
 })
 
 // 修改用户信息
-router.post('/changeInfo', loginRedirect, async (ctx) => {
-  const { nickName, city, avatar } = ctx.request.body
-  ctx.body = await changeUserInfo(nickName, city, avatar)
+router.post('/changeInfo', loginCheck, async (ctx) => {
+  const { nickName, city, avatar, gender } = ctx.request.body
+  const { userName } = ctx.session.userInfo
+  ctx.body = await changeUserInfo(userName, nickName, city, avatar, gender)
 })
 
 // 修改密码

@@ -34,4 +34,8 @@ module.exports = {
     status: 10008,
     message: '删除用户失败'
   },
+  changeInfoFail: {
+    status: 10009,
+    message: '修改信息失败，请稍后再试'
+  },
 }
