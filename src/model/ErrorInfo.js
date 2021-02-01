@@ -38,4 +38,8 @@ module.exports = {
     status: 10009,
     message: '修改信息失败，请稍后再试'
   },
+  maxSizeFail: {
+    status: 10010,
+    message: '文件最大只能上传1M'
+  }
 }

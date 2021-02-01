@@ -15,8 +15,8 @@
                   <div class="form-group">
                     <label for="nickName" class="col-sm-2 control-label">头像</label>
                     <div class="col-sm-10">
-                      <img src="<%= avatar %> " alt="用户头像" class="img-thumbnail">
-                      <input type="file" accept="image/*" class="form-control" id="image-file" placeholder="头像" value="上传头像">
+                      <img style="width: 100px;height: 100px;" src="<%= avatar %> " alt="用户头像" class="img-thumbnail" id="img-avatar">
+                      <input type="file" name="file" accept="image/*" class="form-control" id="img-file" placeholder="头像" value="上传头像">
                     </div>
                   </div>
                   <div class="form-group">
@@ -85,29 +85,47 @@
 
   <script>
     $(function() {
-      let nickName = $('#nickName').val()
-      let city = $('#city').val()
-      let gender = $('#city').val()
+
+      // 上传文件
+      let imgAvatar = $('#img-avatar')
+      let imgFile = $('#img-file')
+      imgFile.change(function(e) {
+        let file = imgFile[0].files[0]
+        let formData = new FormData()
+        formData.append('file', file)
+        axios.post('/api/utils/upload', formData, {
+          headers: { "Content-Type": "multipart/form-data;charset=UTF-8" }
+        }).then(function (res) {
+          let data = res.data
+          if (data.status === 0) {
+            imgAvatar.attr('src', data.data.url)
+          } else {
+            alert(data.message)
+          }
+        })
+      })
 
       // updateInfo
-      $('#updateInfo').click(function() {
+      $('#updateInfo').click(function(event) {
+        event.preventDefault()
+        let nickName = $('#nickName').val()
+        let city = $('#city').val()
+        let gender = $('#gender').val()
+        let avatar = imgAvatar.attr('src')
         axios.post('/api/users/changeInfo', {
           nickName,
           city,
-          gender,
-        })
-        .then(function (response) {
+          gender: parseInt(gender),
+          avatar
+        }).then(function (response) {
           const { data } = response
-          // if(data.status === 0) {
-          //   location.href = '/home'
-          //   return
-          // }
-          alert(data.message)
-          console.log('response = ', response);
+          if(data.status === 0) {
+            location.href = '/home'
+            return
+          } else {
+            alert(data.message)
+          }
         })
-        .catch(function (error) {
-          console.log('error = ', error);
-        });
       })
       
     })

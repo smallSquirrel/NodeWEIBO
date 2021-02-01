@@ -7,7 +7,6 @@ const validate = require('./validator')
 
 const userSchema = {
   type: 'object',
-  required: ['userName', 'password'],
   properties: {
     userName: {
       type: 'string',

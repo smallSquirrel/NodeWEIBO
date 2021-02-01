@@ -93,9 +93,22 @@ async function deleteUserInfo(userName) {
  * @param {string} avatar 头像
  * @param {number} gender 性别
  */
-async function changeUserInfo(userName, nickName, city, avatar, gender) {
-  let result = await updateUser(userName, nickName, city, avatar, gender)
+async function changeUserInfo(ctx, { nickName, city, avatar, gender }) {
+  const { userName } = ctx.session.userInfo
+  let result = await updateUser({
+    newNickName: nickName,
+    newCity: city,
+    newAvatar: avatar,
+    newGender: gender
+  }, { userName })
   if (result) {
+    // 更新session
+    Object.assign(ctx.session.userInfo, {
+      nickName,
+      city,
+      avatar,
+      gender
+    })
     return new SuccessModel()
   }
   return new ErrorModel(changeInfoFail)

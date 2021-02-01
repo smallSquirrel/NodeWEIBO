@@ -60,23 +60,43 @@ async function deleteUser(userName) {
 
 /**
  * 修改用户信息
- * @param {string} userName 唯一用户名
- * @param {string} nickName 用户昵称
- * @param {string} city 城市
- * @param {string} avatar 头像
- * @param {number} gender 性别
+ * @param {Object} param0 要修改的信息 { newNickName, newCity, newAvatar, newGender }
+ * @param {Object} param1 查询条件 { userName, password }
  */
-async function updateUser(userName, nickName, city, avatar, gender) {
-  let user = await getUserInfo(userName)
-  if (user) {
-    user.nickName = nickName
-    user.city = city
-    user.avatar = avatar
-    user.gender = gender
-    await user.save()
-    return true
+async function updateUser(
+  { newNickName, newCity, newAvatar, newGender },
+  { userName, password }
+) {
+
+  // 拼装需要修改的信息
+  let updateData = {}
+  if (newNickName) {
+    updateData.nickName = newNickName
   }
-  return false
+  if (newCity) {
+    updateData.city = newCity
+  }
+  if (newAvatar) {
+    updateData.avatar = newAvatar
+  }
+  if (newGender) {
+    updateData.gender = newGender
+  }
+
+  // 拼装查询条件
+  let whereData = {
+    userName,
+  }
+  if (password) {
+    whereData.password = password
+  }
+
+  let result = await User.update(updateData, {
+    where: whereData
+  })
+
+  // 修改的行数是否大于零
+  return result[0] > 0
 }
 
 module.exports = {

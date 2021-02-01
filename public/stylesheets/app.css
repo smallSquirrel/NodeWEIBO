@@ -93,6 +93,16 @@ a:hover {
 
 
 /* ============ index home page ==============  */
+.text-color-gradient {
+  display: inline-block;
+  font-size: 10em;
+  font-weight: 700;
+  background: linear-gradient(0.25turn, #f77769, #d3ee5e, #4d93cc, #7ccc4d, );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
 .body {
   /* height: 100%; */
   width: 100%;

@@ -23,13 +23,13 @@ router.post('/isExist', async (ctx, next) => {
 })
 
 // 登录
-router.post('/login', async (ctx) => {
+router.post('/login', async (ctx, next) => {
   const { userName, password } = ctx.request.body
   ctx.body = await login(ctx, userName, password)
 })
 
 // 删除用户
-router.post('/delete', loginCheck ,async (ctx) => {
+router.post('/delete', loginCheck ,async (ctx, next) => {
   if (isTest) {
     // 测试环境下 删除自己
     const { userName } = ctx.session.userInfo
@@ -38,14 +38,13 @@ router.post('/delete', loginCheck ,async (ctx) => {
 })
 
 // 修改用户信息
-router.post('/changeInfo', loginCheck, async (ctx) => {
+router.post('/changeInfo', loginCheck, genAsyncFunction(userValidate), async (ctx, next) => {
   const { nickName, city, avatar, gender } = ctx.request.body
-  const { userName } = ctx.session.userInfo
-  ctx.body = await changeUserInfo(userName, nickName, city, avatar, gender)
+  ctx.body = await changeUserInfo(ctx, { nickName, city, avatar, gender })
 })
 
 // 修改密码
-router.post('/changePassword', loginRedirect, async (ctx) => {
+router.post('/changePassword', loginRedirect, async (ctx, next) => {
 
 })
 
