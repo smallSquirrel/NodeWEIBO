@@ -8,7 +8,8 @@
     "prd": "cross-env NODE_ENV=production pm2 start bin/www",
     "lint": "eslint --ext .js",
     "fix": "eslint --fix",
-    "test": "cross-env NODE_ENV=test jest --runInBand --forceExit --colors"
+    "test": "cross-env NODE_ENV=test jest --runInBand --forceExit --colors",
+    "syncDB": "node src/database/async.js"
   },
   "dependencies": {
     "ajv": "^7.0.2",
