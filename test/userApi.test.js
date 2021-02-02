@@ -54,9 +54,35 @@ test('Test: 测试用户登录, 应该返回成功', async () => {
   cookie = resp.headers['set-cookie'].join(';')
 })
 
+// 修改用户信息
+test('Test: 修改用户基本信息，应该成功', async () => {
+  const resp = await server.post('/api/users/changeInfo').send({
+    nickName: 'Test nickName',
+    city: 'Test浦东',
+    avatar: '/test.png',
+    gender: 1
+  }).set('cookie', cookie)
+  expect(resp.body.status).toBe(0)
+})
+
+// 修改密码
+test('Test: 修改用户密码，应该成功', async () => {
+  const resp =  await server.post('/api/users/changePassword').send({
+    password,
+    newPassword: `p_${Date.now()}`
+  }).set('cookie', cookie)
+  expect(resp.body.status).toBe(0)
+})
+
 // 删除用户
 test('Test: 删除用户，应该返回成功', async () => {
   const resp = await server.post('/api/users/delete').set('cookie', cookie)
+  expect(resp.body.status).toBe(0)
+})
+
+// 退出登录
+test('Test: 退出登录，应该返回成功', async () => {
+  const resp = await server.post('/api/users/logout').set('cookie', cookie)
   expect(resp.body.status).toBe(0)
 })
 

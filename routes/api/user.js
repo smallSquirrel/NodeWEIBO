@@ -50,7 +50,7 @@ router.post('/changePassword', loginCheck, genAsyncFunction(userValidate), async
 })
 
 // 退出登录
-router.get('/logout', loginCheck, async (ctx) => {
+router.post('/logout', loginCheck, async (ctx) => {
   ctx.body = await logout(ctx)
 })
 
