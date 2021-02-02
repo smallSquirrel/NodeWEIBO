@@ -3,7 +3,7 @@
  */
 const router = require('koa-router')()
 const { isTest } = require('../../config/env')
-const { register, isExist, login, deleteUserInfo, changeUserInfo } = require('../../src/controller/user')
+const { register, isExist, login, deleteUserInfo, changeUserInfo, changePassword, logout } = require('../../src/controller/user')
 const { genAsyncFunction } = require('../../src/middlewares/validator')
 const userValidate = require('../../src/validator/user')
 const { loginCheck, loginRedirect } = require('../../src/middlewares/loginCheck')
@@ -44,8 +44,14 @@ router.post('/changeInfo', loginCheck, genAsyncFunction(userValidate), async (ct
 })
 
 // 修改密码
-router.post('/changePassword', loginRedirect, async (ctx, next) => {
+router.post('/changePassword', loginCheck, genAsyncFunction(userValidate), async (ctx, next) => {
+  const { password, newPassword } = ctx.request.body
+  ctx.body = await changePassword(ctx, password, newPassword)
+})
 
+// 退出登录
+router.get('/logout', loginCheck, async (ctx) => {
+  ctx.body = await logout(ctx)
 })
 
 module.exports = router

@@ -60,11 +60,11 @@ async function deleteUser(userName) {
 
 /**
  * 修改用户信息
- * @param {Object} param0 要修改的信息 { newNickName, newCity, newAvatar, newGender }
+ * @param {Object} param0 要修改的信息 { newNickName, newCity, newAvatar, newGender, newPassword }
  * @param {Object} param1 查询条件 { userName, password }
  */
 async function updateUser(
-  { newNickName, newCity, newAvatar, newGender },
+  { newNickName, newCity, newAvatar, newGender, newPassword },
   { userName, password }
 ) {
 
@@ -81,6 +81,9 @@ async function updateUser(
   }
   if (newGender) {
     updateData.gender = newGender
+  }
+  if (newPassword) {
+    updateData.password = newPassword
   }
 
   // 拼装查询条件

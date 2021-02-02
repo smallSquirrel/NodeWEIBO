@@ -10,7 +10,8 @@ const {
   registerFail,
   loginFail,
   deleteUserFailInfo,
-  changeInfoFail
+  changeInfoFail,
+  changePasswordFailInfo,
 } = require('../model/ErrorInfo.js')
 
 /**
@@ -114,10 +115,41 @@ async function changeUserInfo(ctx, { nickName, city, avatar, gender }) {
   return new ErrorModel(changeInfoFail)
 }
 
+/**
+ * 修改用户密码
+ * @param {string} oldPassword 旧密码
+ * @param {string} newPassword 新密码
+ */
+async function changePassword(ctx, password, newPassword) {
+  const { userName } = ctx.session.userInfo
+  let cyptOld = doCrypto(password)
+  let cyptNew = doCrypto(newPassword)
+
+  let result = await updateUser({ newPassword: cyptNew },{ userName, password: cyptOld})
+
+  if (result) {
+    // 删除session，重新登录
+    return new SuccessModel()
+  }
+
+  return new ErrorModel(changePasswordFailInfo)
+}
+
+/**
+ * 退出登录
+ * @param {Object} ctx ctx对象
+ */
+async function logout(ctx) {
+  delete ctx.session.userInfo
+  return new SuccessModel()
+}
+
 module.exports = {
   register,
   isExist,
   login,
   deleteUserInfo,
-  changeUserInfo
+  changeUserInfo,
+  changePassword,
+  logout
 }

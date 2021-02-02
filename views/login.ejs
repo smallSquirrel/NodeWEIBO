@@ -31,6 +31,7 @@
   $(function () {
     // 登录
     $('#login-btn').click(function () {
+      event.preventDefault()
       var email = $('#inputEmail').val();
       var password = $('#inputPassword').val();
       axios.post('/api/users/login', {
@@ -42,13 +43,10 @@
         if(data.status === 0) {
           location.href = '/home'
           return
+        } else {
+          alert(data.message)
         }
-        // alert(data.message)
-        console.log('response = ', response);
       })
-      .catch(function (error) {
-        console.log('error = ', error);
-      });
     })
   })
 </script>
