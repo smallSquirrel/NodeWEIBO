@@ -41,5 +41,13 @@ module.exports = {
   maxSizeFail: {
     status: 10010,
     message: '文件最大只能上传1M'
-  }
+  },
+  createBlogFail: {
+    status: 10011,
+    message: '创建微博失败，请稍微再试'
+  },
+  findBlogListFail: {
+    status: 10012,
+    message: '查询微博列表失败，请稍微再试'
+  },
 }

@@ -14,7 +14,9 @@ const { REDIS_CONF } = require('./config/db')
 // 路由
 const index = require('./routes/index')
 const users = require('./routes/view/users')
+
 const usersApi = require('./routes/api/user')
+const blogsApi = require('./routes/api/blog')
 const utilsApi = require('./routes/api/utils')
 const errorViewRouter = require('./routes/view/error')
 
@@ -66,6 +68,7 @@ app.use(async (ctx, next) => {
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 app.use(usersApi.routes(), usersApi.allowedMethods())
+app.use(blogsApi.routes(), blogsApi.allowedMethods())
 app.use(utilsApi.routes(), utilsApi.allowedMethods())
 // error 和 404
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods())

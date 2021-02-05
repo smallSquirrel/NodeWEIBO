@@ -103,6 +103,32 @@ a:hover {
   color: transparent;
 }
 
+.clickUpload2{
+  position:relative;
+  display:inline-block;
+  padding:5px 10px;
+  background:#d0eeff;
+  border:1px solid #99d3f5;
+  border-radius:5px;
+  overflow:hidden;
+  color:#1e88c7;
+  top: 10px;
+}
+.clickUpload2 input{
+  position:absolute;
+  font-size:100px;
+  right:0;
+  top:0;
+  opacity:0;
+  filter:alpha(opacity=0);
+  cursor:pointer;
+}
+.clickUpload2:hover{
+  background:#aadffd;
+  border-color:#78c3f3;
+  color:#004974;
+}
+
 .body {
   /* height: 100%; */
   width: 100%;
@@ -180,6 +206,22 @@ a:hover {
   margin-top: 15px;
   color: rgb(57, 84, 207);
   font-size: 18px;
+}
+
+.btn-send-post {
+  padding: 0 0 8px 8px;
+  border-radius: 0 0 4px 4px;
+  text-align: left;
+  color: #333;
+  background-color: #fff;
+}
+
+.list-blog-item {
+  background: rgba(255,255,255, 0.8);
+  color: #333;
+  border-radius: 4px;
+  text-align: left;
+  padding: 10px 5px;
 }
 
 /* ============ setting page ==============  */

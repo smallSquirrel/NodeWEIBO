@@ -9,10 +9,78 @@
 						<div class="content-wrap">
 
 							<div>
-								<textarea class="form-control" rows="5"></textarea>
+								<textarea class="form-control" rows="5" id="textarea-content"></textarea>
+								<div class="btn-send-post">
+									<button class="btn btn-success" id="btn-send">发表</button>
+									<span>
+										<label for="file" id="file-text" data-url="">插入一张图片</label>
+										<a href="javascript:;" class="clickUpload2">
+											<i class="fa fa-upload"></i>
+											选择文件
+											<input type="file" name="file" id="img-file">
+										</a>
+									</span>
+								</div>
 							</div>
-							<h1><%= title %></h1>
-							<p>EJS Welcome to <%= title %></p>
+
+							<button class="btn btn-success" id="btn-find-list">查询列表</button>
+							
+							<div class="media list-blog-item">
+								<div class="media-left media-middle">
+									<a href="#">
+										<img style="width: 64px; height: 64px;" class="media-object" src="/1612416650558_xiao_zou_z.png" alt="头像">
+									</a>
+								</div>
+								<div class="media-body">
+									<h4 class="media-heading">Middle aligned media</h4>
+									Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+									Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+									Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+								</div>
+							</div>
+
+							<div class="media list-blog-item">
+								<div class="media-left media-middle">
+									<a href="#">
+										<img style="width: 64px; height: 64px;" class="media-object" src="/1612416650558_xiao_zou_z.png" alt="头像">
+									</a>
+								</div>
+								<div class="media-body">
+									<h4 class="media-heading">Middle aligned media</h4>
+									Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+									Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+									Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+								</div>
+							</div>
+
+							<div class="media list-blog-item">
+								<div class="media-left media-middle">
+									<a href="#">
+										<img style="width: 64px; height: 64px;" class="media-object" src="/1612416650558_xiao_zou_z.png" alt="头像">
+									</a>
+								</div>
+								<div class="media-body">
+									<h4 class="media-heading">Middle aligned media</h4>
+									Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+									Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+									Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+								</div>
+							</div>
+
+							<div class="media list-blog-item">
+								<div class="media-left media-middle">
+									<a href="#">
+										<img style="width: 64px; height: 64px;" class="media-object" src="/1612416650558_xiao_zou_z.png" alt="头像">
+									</a>
+								</div>
+								<div class="media-body">
+									<h4 class="media-heading">Middle aligned media</h4>
+									Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+									Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+									Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+								</div>
+							</div>
+
 						</div>
 					</div>
 
@@ -52,5 +120,64 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+    $(function() {
+
+      // 上传文件
+      let imgFile = $('#img-file')
+      imgFile.change(function(e) {
+        let file = imgFile[0].files[0]
+        let formData = new FormData()
+        formData.append('file', file)
+        axios.post('/api/utils/upload', formData, {
+          headers: { "Content-Type": "multipart/form-data;charset=UTF-8" }
+        }).then(function (res) {
+          let data = res.data
+          if (data.status === 0) {
+						$('#file-text').text(data.data.url)
+						$('#file-text').attr('data-url',data.data.url)
+          } else {
+            alert(data.message)
+          }
+        })
+			})
+			
+			// 创建微博
+			$('#btn-send').click(function(event) {
+				event.preventDefault()
+				let content = $('#textarea-content').val()
+				let image = $('#file-text').attr('data-url')
+				if (!content) {
+					alert('请输入微博内容')
+					return
+				}
+				axios.post('/api/blog/create', {
+					content,
+					image
+				}).then(function (res) {
+          let data = res.data
+          if (data.status === 0) {
+            console.log('data == ', data)
+          } else {
+            alert(data.message)
+          }
+        })
+			})
+
+			// 查询列表
+			$('#btn-find-list').click(function(event) {
+				event.preventDefault()
+				axios.post('/api/blog/list', {}).then(function (res) {
+          let data = res.data
+          if (data.status === 0) {
+            console.log('data == ', data)
+          } else {
+            alert(data.message)
+          }
+        })
+			})
+    })
+  </script>
 
 <%- include('./footer.ejs') %>
