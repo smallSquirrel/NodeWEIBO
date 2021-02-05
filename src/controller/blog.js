@@ -1,6 +1,7 @@
 /**
  * @description 微博接口 controller
  */
+const xss = require('xss')
 const { SuccessModel, ErrorModel } = require("../model/ResModel")
 const { createBlogFail, findBlogListFail } = require('../model/ErrorInfo.js')
 const { createBlog, findAllBlog } = require("../service/blog")
@@ -12,11 +13,14 @@ const { createBlog, findAllBlog } = require("../service/blog")
  * @param {String} image 图片URL
  */
 async function createBlogController(userId, content, image) {
-  let result = await createBlog(userId, content, image)
-  if (result) {
+  try {
+    let contentFilterxss = xss(content)
+    let result = await createBlog(userId, contentFilterxss, image)
     return new SuccessModel(result)
+  } catch (error) {
+    console.log(error.message, error.stack)
+    return new ErrorModel(createBlogFail)
   }
-  return new ErrorModel(createBlogFail)
 }
 
 /**
