@@ -1,7 +1,7 @@
 /**
  * @description model测试案例
  */
-const { User } = require('../src/database/model/index')
+const { User } = require('../../src/database/model/index')
 
 test('Test: User Model各个属性，符合预期', () => {
   const user = User.build({

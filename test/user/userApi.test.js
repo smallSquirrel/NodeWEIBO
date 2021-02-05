@@ -1,7 +1,7 @@
 /**
  * @description user相关接口测试案例
  */
-const server = require('./server')
+const server = require('../server')
 
 let userName = `u_${Date.now()}@126.com`
 let password = `p_${Date.now()}`
